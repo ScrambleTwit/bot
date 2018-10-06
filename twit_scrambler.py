@@ -64,12 +64,14 @@ HTML_SWAPS = {
 
 
 def send_alert(message):
+    if not pushover_creds:
+        return
     print(f'sending alert: {message}')
     conn = http.client.HTTPSConnection("api.pushover.net:443")
     conn.request("POST", "/1/messages.json",
         urllib.parse.urlencode({
-            "token": ,
-            "user": ,
+            "token":pushover_creds['user_key'],
+            "user":pushover_creds['application_key'],
             "message": message
         }), { "Content-type": "application/x-www-form-urlencoded" })
 
@@ -286,6 +288,13 @@ if __name__ == '__main__':
     
     with open(PATH+'/creds.json') as f:
         creds = json.load(f)
+
+    try:
+        with open(PATH+'/pushover_creds.json') as f:
+            pushover_creds = json.load(f)
+    except IOError as e:
+        print("No pushover creds found", e)
+        pushover_creds = None
     
     # Construct API wrapper and authenticate
     creds['tweet_mode'] = 'extended'

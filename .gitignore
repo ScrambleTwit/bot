@@ -2,6 +2,7 @@
 
 
 creds.json
+pushover_creds.json
 *.txt
 !requirements.txt
 
