@@ -68,8 +68,8 @@ def send_alert(message):
     conn = http.client.HTTPSConnection("api.pushover.net:443")
     conn.request("POST", "/1/messages.json",
         urllib.parse.urlencode({
-            "token": "a3wtbecwv4wkbrab1m58uk3jkpider",
-            "user": "u5udyc93zdq44x2yvr68bfykp6b5dj",
+            "token": ,
+            "user": ,
             "message": message
         }), { "Content-type": "application/x-www-form-urlencoded" })
 
