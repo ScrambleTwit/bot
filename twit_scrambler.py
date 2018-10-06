@@ -30,6 +30,7 @@ POST_TO_TWITTER = not TEST_MODE
 WORD = 0
 WTYPE = 1
 TARGET_TWEET_OVERRIDE = None
+MIN_SWAP_PERCENT = 0.15
 
 # Set the twitter accounts to pull tweets from.
 TWITTER_ACCOUNTS = [
@@ -184,7 +185,12 @@ def build_mashed_tweet(target_tweet, mix, perc):
     print('swaps_performed', swaps_performed)
 
     if swaps_performed < MIN_SWAPS_TO_MAKE:
+        print("Not enough swaps performed (count), SKIPPING THIS TWEET")
         return None
+    
+    if (swaps_performed / len(target_tweet_parts)) < MIN_SWAP_PERCENT:
+        print("Not enough swaps performed (%), SKIPPING THIS TWEET")
+        return None 
     
     # remove encoded HTML chars 
     for search, repl in HTML_SWAPS.items():
