@@ -70,12 +70,12 @@ def send_alert(message):
         return
     print(f'sending alert: {message}')
     conn = http.client.HTTPSConnection("api.pushover.net:443")
-    conn.request("POST", "/1/messages.json",
+    print(conn.request("POST", "/1/messages.json",
         urllib.parse.urlencode({
-            "token":pushover_creds['user_key'],
-            "user":pushover_creds['application_key'],
+            "token":pushover_creds['application_key'],
+            "user":pushover_creds['user_key'],
             "message": message
-        }), { "Content-type": "application/x-www-form-urlencoded" })
+        }), { "Content-type": "application/x-www-form-urlencoded" }))
 
 
 def skip_word(word):
