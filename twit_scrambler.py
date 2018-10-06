@@ -5,6 +5,7 @@ import json
 import os
 import random
 import re
+import time
 
 import nltk
 nltk.download('punkt')
@@ -304,3 +305,4 @@ if __name__ == '__main__':
 
     for twit in TWITTER_ACCOUNTS:
         main(twit, api)
+        time.sleep(2)
