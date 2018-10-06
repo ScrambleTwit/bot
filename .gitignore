@@ -1,4 +1,10 @@
 # Byte-compiled / optimized / DLL files
+
+
+creds.json
+*.txt
+!requirements.txt
+
 __pycache__/
 *.py[cod]
 *$py.class
